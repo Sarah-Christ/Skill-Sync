@@ -1,0 +1,24 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/node_modules_next_dist_1a6ee436._.js",
+      "static/chunks/app_favicon_ico_mjs_659ce808._.js",
+      "static/chunks/[root-of-the-server]__501b62d3._.css",
+      "static/chunks/app_layout_c0237562.js",
+      "static/chunks/node_modules_axios_lib_99999129._.js",
+      "static/chunks/node_modules_@firebase_auth_dist_esm_8b16cda5._.js",
+      "static/chunks/node_modules_@firebase_firestore_dist_index_esm_bf7383cb.js",
+      "static/chunks/node_modules_@firebase_storage_dist_index_esm_752d57ce.js",
+      "static/chunks/node_modules_73ef17e3._.js",
+      "static/chunks/_e301a728._.js",
+      "static/chunks/app_page_c6067fdf.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_fd44f5a4._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_8f19e6fb._.js",
+      "static/chunks/node_modules_next_dist_2ecbf5fa._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_93808211._.js"
+    ]
+  }
+}
