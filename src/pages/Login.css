@@ -1,43 +1,83 @@
-/* src/styles/Login.css */
-.login-container {
+/* Login.css - used for both Login and Signup pages */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #7b2ff7, #f107a3);
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f7f3ff;
-  font-family: "Segoe UI", sans-serif;
+  align-items: center;
 }
 
-h2 {
-  color: #6a1b9a;
-  margin-bottom: 20px;
+.auth-container {
+  background: #ffffff;
+  width: 400px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 300px;
+.auth-container h2 {
+  text-align: center;
+  color: #7b2ff7;
+  margin-bottom: 25px;
 }
 
-.login-form input {
-  padding: 10px;
-  font-size: 16px;
+.auth-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s;
 }
 
-.login-form button {
-  padding: 10px;
+.auth-form input:focus {
+  border: 1px solid #7b2ff7;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #7b2ff7;
+  color: white;
   font-size: 16px;
   border-radius: 8px;
-  background-color: #6a1b9a;
-  color: white;
-  border: none;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
-.google-button {
-  background-color: #4285f4;
+.auth-form button:hover {
+  background-color: #601ddf;
+}
+
+.google-signin-btn {
+  background-color: #db4437;
+  margin-top: 10px;
+}
+
+.google-signin-btn:hover {
+  background-color: #c1351d;
+}
+
+.auth-form p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-form p a {
+  color: #7b2ff7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-form p a:hover {
+  text-decoration: underline;
 }
