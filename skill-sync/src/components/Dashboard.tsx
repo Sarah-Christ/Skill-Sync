@@ -1,50 +1,51 @@
+// src/pages/Dashboard.tsx
 import React, { useEffect, useState } from "react";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
-import { db, auth } from "../firebase/firebaseConfig";
+import { auth, db } from "../firebase/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
+interface ProfileData {
+  name: string;
+  learnSkills: string;
+  offerSkills: string;
+}
+
 const Dashboard: React.FC = () => {
-  const [userData, setUserData] = useState<any>(null);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const currentUser = auth.currentUser;
-
-    if (!currentUser || !currentUser.email) {
-      console.log("User not logged in, redirecting...");
-      navigate("/login");
-      return;
-    }
-
-    const q = query(
-      collection(db, "users"),
-      where("email", "==", currentUser.email)
-    );
-
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      if (!snapshot.empty) {
-        const data = snapshot.docs[0].data();
-        setUserData(data);
-      } else {
-        console.log("No user profile found in Firestore.");
-        setUserData({ email: currentUser.email }); // fallback
+    const fetchProfile = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setProfile(docSnap.data() as ProfileData);
+        }
       }
-    });
+    };
+    fetchProfile();
+  }, []);
 
-    return () => unsubscribe();
-  }, [navigate]);
-
-  if (!userData) {
-    return <p style={{ textAlign: "center" }}>Loading Profile...</p>;
-  }
+  const handleEdit = () => {
+    navigate("/edit-profile");
+  };
 
   return (
     <div className="dashboard-container">
-      <h2>Welcome, {userData.name || "Friend"}!</h2>
-      <p>Email: {userData.email}</p>
-      <p>Skills to Offer: {userData.skillsToOffer || "Not set"}</p>
-      <p>Skills to Learn: {userData.skillsToLearn || "Not set"}</p>
+      <h1>Welcome to Skill-Sync</h1>
+      {profile ? (
+        <div className="profile-box">
+          <h2>{profile.name}</h2>
+          <p><strong>Skills to Learn:</strong> {profile.learnSkills}</p>
+          <p><strong>Skills to Offer:</strong> {profile.offerSkills}</p>
+          <button onClick={handleEdit}>Edit Profile</button>
+        </div>
+      ) : (
+        <p>Loading profile...</p>
+      )}
     </div>
   );
 };
