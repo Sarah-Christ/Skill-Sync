@@ -1,0 +1,61 @@
+.dashboard-container {
+  padding: 50px;
+  text-align: center;
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+
+.card {
+  display: inline-block;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.card p {
+  margin: 10px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #7f5af0;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #6a47d4;
+}
+
+button.logout {
+  background: #ff4e4e;
+}
+
+button.logout:hover {
+  background: #d83838;
+}
+/* src/components/Dashboard.css */
+.dashboard {
+  padding: 20px;
+}
+.profile-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f0f0ff;
+}
