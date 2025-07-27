@@ -51,6 +51,7 @@
   padding: 8px 0;
   min-width: 160px;
   font-family: 'Segoe UI', sans-serif;
+  z-index:999;
 }
 
 .dropdown-menu button {
@@ -114,4 +115,22 @@
   .dashboard-container p {
     font-size: 16px;
   }
+}
+
+.post-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.post-button:hover {
+  background-color: #0056b3;
 }
