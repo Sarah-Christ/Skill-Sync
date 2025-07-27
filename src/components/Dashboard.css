@@ -1,34 +1,117 @@
-/* src/pages/Dashboard.css */
-.dashboard-container {
-  padding: 40px;
+/* Avatar container fixed top right */
+.profile-avatar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #6a0dad;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
   text-align: center;
+  line-height: 44px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+}
+
+.profile-avatar:hover {
+  background-color: #5c00b3;
+}
+
+/* Profile image styling */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+/* If no image, show initials centered */
+.profile-initials {
+  line-height: 44px;
+  display: block;
+}
+
+/* Dropdown menu below avatar */
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  min-width: 160px;
   font-family: 'Segoe UI', sans-serif;
 }
 
-.profile-box {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 400px;
-  border-radius: 10px;
-  background-color: #f0e9ff;
-  box-shadow: 0 0 10px rgba(150, 115, 255, 0.3);
-}
-
-.profile-box h2 {
-  color: #6a0dad;
-}
-
-.profile-box p {
-  font-size: 16px;
-  margin: 10px 0;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #6a0dad;
-  color: white;
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  background: none;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
   cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Main content container */
+.dashboard-container {
+  max-width: 720px;
+  margin: 60px auto 40px; /* leave space for fixed avatar */
+  padding: 0 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.dashboard-container h1 {
+  color: #6a0dad;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.dashboard-container p {
+  font-size: 18px;
+  margin: 12px 0;
+  font-weight: 500;
+}
+
+/* Responsive tweaks for small devices */
+@media (max-width: 480px) {
+  .profile-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 36px;
+  }
+
+  .dashboard-container {
+    max-width: 100%;
+    margin: 60px 10px 40px;
+    padding: 0 10px;
+  }
+
+  .dashboard-container h1 {
+    font-size: 24px;
+  }
+
+  .dashboard-container p {
+    font-size: 16px;
+  }
 }

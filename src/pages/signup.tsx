@@ -1,5 +1,6 @@
+// src/pages/Signup.tsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -36,9 +37,9 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2>Signup</h2>
-      <form onSubmit={handleSignup}>
+    <div className="auth-container">
+      <h2>Sign Up</h2>
+      <form className="auth-form" onSubmit={handleSignup}>
         <input
           type="text"
           placeholder="Full Name"
@@ -75,7 +76,15 @@ const Signup: React.FC = () => {
           required
         />
         <button type="submit">Sign Up</button>
-        <p onClick={() => navigate("/")}>Already have an account? Login</p>
+        <p>
+          Already have an account?{" "}
+          <Link
+            to="/"
+            style={{ color: "#7b2ff7", textDecoration: "none", fontWeight: "bold" }}
+          >
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );

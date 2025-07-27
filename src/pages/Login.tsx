@@ -2,14 +2,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, provider } from "../firebase/firebaseConfig";
-import { signInWithPopup } from "firebase/auth";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import "./Login.css";
 
 const Login: React.FC = () => {
@@ -41,56 +35,45 @@ const Login: React.FC = () => {
     }
   };
 
-  // ✅ Email Login
+  // ✅ Email Login (Fixed to use Firebase Auth)
   const handleEmailLogin = async () => {
     try {
-      const usersRef = collection(db, "users");
-      const q = query(
-        usersRef,
-        where("email", "==", email),
-        where("password", "==", password)
-      );
-      const snapshot = await getDocs(q);
-
-      if (!snapshot.empty) {
-        console.log("User logged in:", email);
-        navigate("/dashboard");
-      } else {
-        alert("Invalid credentials. Please try again.");
-      }
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log("User logged in:", userCredential.user.email);
+      navigate("/dashboard");
     } catch (error) {
+      alert("Invalid credentials. Please try again.");
       console.error("Email login error:", error);
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <h2>Skill-Sync Login</h2>
-
-      <div className="login-form">
+      <div className="auth-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-
         <button onClick={handleEmailLogin}>Login with Email</button>
-        <button onClick={handleGoogleLogin} className="google-button">
+        <button onClick={handleGoogleLogin} className="google-signin-btn">
           Login with Google
         </button>
-
-        <p
-          style={{ marginTop: "10px", cursor: "pointer", color: "blue" }}
-          onClick={() => navigate("/signup")}
-        >
-          Don't have an account? Sign up
+        <p>
+          Don't have an account?{" "}
+          <a href="/signup" style={{ color: "#7b2ff7", fontWeight: "bold" }}>
+            Sign Up
+          </a>
         </p>
       </div>
     </div>
