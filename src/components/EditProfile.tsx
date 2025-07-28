@@ -51,12 +51,31 @@ const EditProfile: React.FC = () => {
         skillsToLearn,
         skillsToOffer,
       });
+
+      // ✅ Save skills to localStorage for Posts page
+      const skillPosts = JSON.parse(localStorage.getItem("skillPosts") || "[]");
+
+      const newPosts = [
+        ...skillsToLearn.map((skill) => ({
+          type: "Learn",
+          skill,
+          postedBy: postedByLearn || name || "Anonymous",
+        })),
+        ...skillsToOffer.map((skill) => ({
+          type: "Offer",
+          skill,
+          postedBy: postedByOffer || name || "Anonymous",
+        })),
+      ];
+
+      localStorage.setItem("skillPosts", JSON.stringify([...skillPosts, ...newPosts]));
+
       navigate("/dashboard");
     }
   };
 
   const handleCancelEdit = () => {
-    navigate("/dashboard"); // Redirect to dashboard when cross icon clicked
+    navigate("/dashboard");
   };
 
   const addLearnSkill = () => {
@@ -130,9 +149,7 @@ const EditProfile: React.FC = () => {
 
   return (
     <div className="edit-container">
-      {/* Cross Icon */}
       <button className="close-button" onClick={handleCancelEdit}>✖</button>
-
       <h2>Edit Your Profile</h2>
 
       <input
